@@ -174,18 +174,41 @@ export function homeTemplateId( state, action ) {
 	return state;
 }
 
-/**
- * Reducer for navigation panel's active menu.
- *
- * @param {Object} state Current state.
- * @param {Object} action Dispatched action.
- *
- * @return {Object} Updated state.
- */
-function navigationPanelActiveMenu( state = 'root', action ) {
+function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
 	switch ( action.type ) {
 		case 'SET_NAVIGATION_PANEL_ACTIVE_MENU':
-			return action.menu;
+			return {
+				...state,
+				menu: action.menu,
+			};
+		case 'OPEN_NAVIGATION_PANEL_TO_MENU':
+			return {
+				...state,
+				isOpen: true,
+				menu: action.menu,
+			};
+		case 'SET_NAVIGATION_PANEL_OPEN':
+			return {
+				...state,
+				isOpen: action.isOpen,
+			};
+		case 'SET_INSERTER_OPEN':
+			return {
+				...state,
+				isOpen: action.isOpen ? false : state.isOpen,
+			};
+	}
+	return state;
+}
+
+function blockInserterPanel( state = false, action ) {
+	switch ( action.type ) {
+		case 'OPEN_NAVIGATION_PANEL_TO_MENU':
+			return false;
+		case 'SET_NAVIGATION_PANEL_OPEN':
+			return action.isOpen ? false : state.isOpen;
+		case 'SET_INSERTER_OPEN':
+			return action.isOpen;
 	}
 	return state;
 }
@@ -199,5 +222,6 @@ export default combineReducers( {
 	templateType,
 	page,
 	homeTemplateId,
-	navigationPanelActiveMenu,
+	navigationPanel,
+	blockInserterPanel,
 } );

@@ -173,3 +173,33 @@ export function setNavigationPanelActiveMenu( menu ) {
 		menu,
 	};
 }
+
+/**
+ * todo
+ */
+export function openNavigationPanelToMenu( menu ) {
+	return {
+		type: 'OPEN_NAVIGATION_PANEL_TO_MENU',
+		menu,
+	};
+}
+
+/**
+ * todo
+ */
+export function setNavigationPanelOpen( isOpen ) {
+	return {
+		type: 'SET_NAVIGATION_PANEL_OPEN',
+		isOpen,
+	};
+}
+
+/**
+ * todo
+ */
+export function setInserterOpen( isOpen ) {
+	return {
+		type: 'SET_INSERTER_OPEN',
+		isOpen,
+	};
+}

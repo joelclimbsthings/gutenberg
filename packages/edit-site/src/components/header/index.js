@@ -28,27 +28,23 @@ import RedoButton from './undo-redo/redo';
 import DocumentActions from './document-actions';
 import NavigationToggle from './navigation-toggle';
 
-export default function Header( {
-	openEntitiesSavedStates,
-	isInserterOpen,
-	onToggleInserter,
-	isNavigationOpen,
-	onToggleNavigation,
-} ) {
+export default function Header( { openEntitiesSavedStates } ) {
 	const {
 		deviceType,
 		hasFixedToolbar,
 		template,
 		page,
 		showOnFront,
+		isNavigationOpen,
+		isInserterOpen,
 	} = useSelect( ( select ) => {
 		const {
 			__experimentalGetPreviewDeviceType,
 			isFeatureActive,
 			getTemplateId,
-			getTemplatePartId,
-			getTemplateType,
 			getPage,
+			getNavigationIsOpen,
+			getInserterIsOpen,
 		} = select( 'core/edit-site' );
 
 		const { getEntityRecord, getEditedEntityRecord } = select( 'core' );
@@ -61,18 +57,19 @@ export default function Header( {
 		return {
 			deviceType: __experimentalGetPreviewDeviceType(),
 			hasFixedToolbar: isFeatureActive( 'fixedToolbar' ),
-			templateId: _templateId,
 			template: getEntityRecord( 'postType', 'wp_template', _templateId ),
-			templatePartId: getTemplatePartId(),
-			templateType: getTemplateType(),
 			page: getPage(),
 			showOnFront: _showOnFront,
+			isNavigationOpen: getNavigationIsOpen(),
+			isInserterOpen: getInserterIsOpen(),
 		};
 	}, [] );
 
 	const {
 		__experimentalSetPreviewDeviceType: setPreviewDeviceType,
 		setPage,
+		setInserterOpen,
+		setNavigationPanelOpen,
 	} = useDispatch( 'core/edit-site' );
 
 	const isLargeViewport = useViewportMatch( 'medium' );
@@ -85,7 +82,9 @@ export default function Header( {
 				<MainDashboardButton.Slot>
 					<NavigationToggle
 						isOpen={ isNavigationOpen }
-						onClick={ onToggleNavigation }
+						onClick={ () =>
+							setNavigationPanelOpen( ! isNavigationOpen )
+						}
 					/>
 				</MainDashboardButton.Slot>
 				<div className="edit-site-header__toolbar">
@@ -93,7 +92,7 @@ export default function Header( {
 						isPrimary
 						isPressed={ isInserterOpen }
 						className="edit-site-header-toolbar__inserter-toggle"
-						onClick={ onToggleInserter }
+						onClick={ () => setInserterOpen( ! isInserterOpen ) }
 						icon={ plus }
 						label={ _x(
 							'Add block',

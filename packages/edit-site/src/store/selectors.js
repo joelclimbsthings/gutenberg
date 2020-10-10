@@ -146,5 +146,19 @@ export function getPage( state ) {
  * @return {string} Active menu.
  */
 export function getNavigationPanelActiveMenu( state ) {
-	return state.navigationPanelActiveMenu;
+	return state.navigationPanel.menu;
+}
+
+/**
+ * todo
+ */
+export function getNavigationIsOpen( state ) {
+	return state.navigationPanel.isOpen;
+}
+
+/**
+ * todo
+ */
+export function getInserterIsOpen( state ) {
+	return state.blockInserterPanel;
 }
