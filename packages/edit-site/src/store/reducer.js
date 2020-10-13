@@ -187,15 +187,16 @@ function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
 				isOpen: true,
 				menu: action.menu,
 			};
-		case 'SET_NAVIGATION_PANEL_OPEN':
+		case 'SET_IS_NAVIGATION_PANEL_OPENED':
 			return {
 				...state,
 				menu: ! action.isOpen ? 'root' : state.menu, // Set menu to root when closing panel.
 				isOpen: action.isOpen,
 			};
-		case 'SET_INSERTER_OPEN':
+		case 'SET_IS_INSERTER_OPENED':
 			return {
 				...state,
+				menu: state.isOpen && action.isOpen ? 'root' : state.menu, // Set menu to root when closing panel.
 				isOpen: action.isOpen ? false : state.isOpen,
 			};
 	}
@@ -206,9 +207,9 @@ function blockInserterPanel( state = false, action ) {
 	switch ( action.type ) {
 		case 'OPEN_NAVIGATION_PANEL_TO_MENU':
 			return false;
-		case 'SET_NAVIGATION_PANEL_OPEN':
+		case 'SET_IS_NAVIGATION_PANEL_OPENED':
 			return action.isOpen ? false : state.isOpen;
-		case 'SET_INSERTER_OPEN':
+		case 'SET_IS_INSERTER_OPENED':
 			return action.isOpen;
 	}
 	return state;

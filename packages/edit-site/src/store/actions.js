@@ -187,9 +187,9 @@ export function openNavigationPanelToMenu( menu ) {
 /**
  * todo
  */
-export function setNavigationPanelOpen( isOpen ) {
+export function setIsNavigationPanelOpened( isOpen ) {
 	return {
-		type: 'SET_NAVIGATION_PANEL_OPEN',
+		type: 'SET_IS_NAVIGATION_PANEL_OPENED',
 		isOpen,
 	};
 }
@@ -197,9 +197,9 @@ export function setNavigationPanelOpen( isOpen ) {
 /**
  * todo
  */
-export function setInserterOpen( isOpen ) {
+export function setIsInserterOpened( isOpen ) {
 	return {
-		type: 'SET_INSERTER_OPEN',
+		type: 'SET_IS_INSERTER_OPENED',
 		isOpen,
 	};
 }

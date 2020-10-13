@@ -152,13 +152,13 @@ export function getNavigationPanelActiveMenu( state ) {
 /**
  * todo
  */
-export function getNavigationIsOpen( state ) {
+export function isNavigationOpened( state ) {
 	return state.navigationPanel.isOpen;
 }
 
 /**
  * todo
  */
-export function getInserterIsOpen( state ) {
+export function isInserterOpened( state ) {
 	return state.blockInserterPanel;
 }

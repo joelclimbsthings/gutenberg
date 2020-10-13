@@ -11,11 +11,11 @@ import NavigationPanel from './navigation-panel';
 
 const LeftSidebar = () => {
 	const { isNavigationOpen, isInserterOpen } = useSelect( ( select ) => {
-		const { getNavigationIsOpen, getInserterIsOpen } = select(
+		const { isNavigationOpened, getInserterIsOpen } = select(
 			'core/edit-site'
 		);
 		return {
-			isNavigationOpen: getNavigationIsOpen(),
+			isNavigationOpen: isNavigationOpened(),
 			isInserterOpen: getInserterIsOpen(),
 		};
 	} );

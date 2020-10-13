@@ -63,7 +63,7 @@ function Editor() {
 			getTemplatePartId,
 			getTemplateType,
 			getPage,
-			getNavigationIsOpen,
+			isNavigationOpened,
 		} = _select( 'core/edit-site' );
 		const _templateId = getTemplateId();
 		const _templatePartId = getTemplatePartId();
@@ -94,11 +94,11 @@ function Editor() {
 				: null,
 			select: _select,
 			entityId: _entityId,
-			isNavigationOpen: getNavigationIsOpen(),
+			isNavigationOpen: isNavigationOpened(),
 		};
 	}, [] );
 	const { editEntityRecord } = useDispatch( 'core' );
-	const { setPage, setInserterOpen } = useDispatch( 'core/edit-site' );
+	const { setPage, setIsInserterOpened } = useDispatch( 'core/edit-site' );
 
 	const inlineStyles = useResizeCanvas( deviceType );
 
@@ -236,7 +236,7 @@ function Editor() {
 															{ template && (
 																<BlockEditor
 																	setIsInserterOpen={
-																		setInserterOpen
+																		setIsInserterOpened
 																	}
 																/>
 															) }

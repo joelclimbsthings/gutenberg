@@ -43,7 +43,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 			isFeatureActive,
 			getTemplateId,
 			getPage,
-			getNavigationIsOpen,
+			isNavigationOpened,
 			getInserterIsOpen,
 		} = select( 'core/edit-site' );
 
@@ -60,7 +60,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 			template: getEntityRecord( 'postType', 'wp_template', _templateId ),
 			page: getPage(),
 			showOnFront: _showOnFront,
-			isNavigationOpen: getNavigationIsOpen(),
+			isNavigationOpen: isNavigationOpened(),
 			isInserterOpen: getInserterIsOpen(),
 		};
 	}, [] );
