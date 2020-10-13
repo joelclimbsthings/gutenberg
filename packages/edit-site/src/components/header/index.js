@@ -68,7 +68,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 	const {
 		__experimentalSetPreviewDeviceType: setPreviewDeviceType,
 		setPage,
-		setInserterOpen,
+		setIsInserterOpened,
 		setIsNavigationPanelOpened,
 	} = useDispatch( 'core/edit-site' );
 
@@ -92,7 +92,9 @@ export default function Header( { openEntitiesSavedStates } ) {
 						isPrimary
 						isPressed={ isInserterOpen }
 						className="edit-site-header-toolbar__inserter-toggle"
-						onClick={ () => setInserterOpen( ! isInserterOpen ) }
+						onClick={ () =>
+							setIsInserterOpened( ! isInserterOpen )
+						}
 						icon={ plus }
 						label={ _x(
 							'Add block',

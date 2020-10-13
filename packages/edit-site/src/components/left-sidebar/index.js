@@ -20,7 +20,7 @@ const LeftSidebar = () => {
 		};
 	} );
 
-	const { setInserterOpen } = useDispatch( 'core/edit-site' );
+	const { setIsInserterOpened } = useDispatch( 'core/edit-site' );
 
 	if ( isNavigationOpen ) {
 		return <NavigationPanel />;
@@ -28,7 +28,9 @@ const LeftSidebar = () => {
 
 	if ( isInserterOpen ) {
 		return (
-			<InserterPanel closeInserter={ () => setInserterOpen( false ) } />
+			<InserterPanel
+				closeInserter={ () => setIsInserterOpened( false ) }
+			/>
 		);
 	}
 
