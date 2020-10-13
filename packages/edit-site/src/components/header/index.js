@@ -44,7 +44,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 			getTemplateId,
 			getPage,
 			isNavigationOpened,
-			getInserterIsOpen,
+			isInserterOpened,
 		} = select( 'core/edit-site' );
 
 		const { getEntityRecord, getEditedEntityRecord } = select( 'core' );
@@ -61,7 +61,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 			page: getPage(),
 			showOnFront: _showOnFront,
 			isNavigationOpen: isNavigationOpened(),
-			isInserterOpen: getInserterIsOpen(),
+			isInserterOpen: isInserterOpened(),
 		};
 	}, [] );
 
