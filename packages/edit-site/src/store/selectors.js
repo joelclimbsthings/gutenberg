@@ -150,14 +150,22 @@ export function getNavigationPanelActiveMenu( state ) {
 }
 
 /**
- * todo
+ * Returns the current opened/closed state of the navigation panel.
+ *
+ * @param {Object} state Global application state.
+ *
+ * @return {boolean} True if the navigation panel should be open; false if closed.
  */
 export function isNavigationOpened( state ) {
 	return state.navigationPanel.isOpen;
 }
 
 /**
- * todo
+ * Returns the current opened/closed state of the inserter panel.
+ *
+ * @param {Object} state Global application state.
+ *
+ * @return {boolean} True if the inserter panel should be open; false if closed.
  */
 export function isInserterOpened( state ) {
 	return state.blockInserterPanel;

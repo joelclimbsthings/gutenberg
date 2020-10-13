@@ -175,7 +175,9 @@ export function setNavigationPanelActiveMenu( menu ) {
 }
 
 /**
- * todo
+ * Opens the navigation panel and sets its active menu at the same time.
+ *
+ * @param {string} menu Identifies the menu to open.
  */
 export function openNavigationPanelToMenu( menu ) {
 	return {
@@ -185,7 +187,10 @@ export function openNavigationPanelToMenu( menu ) {
 }
 
 /**
- * todo
+ * Sets whether the navigation panel should be open.
+ *
+ * @param {boolean} isOpen If true, opens the nav panel. If false, closes it. It
+ *                         does not toggle the state, but sets it directly.
  */
 export function setIsNavigationPanelOpened( isOpen ) {
 	return {
@@ -195,7 +200,10 @@ export function setIsNavigationPanelOpened( isOpen ) {
 }
 
 /**
- * todo
+ * Sets whether the block inserter panel should be open.
+ *
+ * @param {boolean} isOpen If true, opens the inserter. If false, closes it. It
+ *                         does not toggle the state, but sets it directly.
  */
 export function setIsInserterOpened( isOpen ) {
 	return {

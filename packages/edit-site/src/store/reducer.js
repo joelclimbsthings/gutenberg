@@ -174,6 +174,16 @@ export function homeTemplateId( state, action ) {
 	return state;
 }
 
+/**
+ * Reducer for information about the navigation panel, such as its active menu
+ * and whether it should be opened or closed.
+ *
+ * Note: this reducer interacts with the block inserter panel reducer to make
+ * sure that only one of the two panels is open at the same time.
+ *
+ * @param {Object} state Current state.
+ * @param {Object} action Dispatched action.
+ */
 function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
 	switch ( action.type ) {
 		case 'SET_NAVIGATION_PANEL_ACTIVE_MENU':
@@ -203,6 +213,15 @@ function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
 	return state;
 }
 
+/**
+ * Reducer to set the block inserter panel open or closed.
+ *
+ * Note: this reducer interacts with the navigation panel reducer to make
+ * sure that only one of the two panels is open at the same time.
+ *
+ * @param {Object} state Current state.
+ * @param {Object} action Dispatched action.
+ */
 function blockInserterPanel( state = false, action ) {
 	switch ( action.type ) {
 		case 'OPEN_NAVIGATION_PANEL_TO_MENU':
