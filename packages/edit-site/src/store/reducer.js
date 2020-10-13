@@ -190,6 +190,7 @@ function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
 		case 'SET_NAVIGATION_PANEL_OPEN':
 			return {
 				...state,
+				menu: ! action.isOpen ? 'root' : state.menu, // Set menu to root when closing panel.
 				isOpen: action.isOpen,
 			};
 		case 'SET_INSERTER_OPEN':
