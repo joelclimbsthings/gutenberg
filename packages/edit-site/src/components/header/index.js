@@ -69,7 +69,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 		__experimentalSetPreviewDeviceType: setPreviewDeviceType,
 		setPage,
 		setInserterOpen,
-		setNavigationPanelOpen,
+		setIsNavigationPanelOpened,
 	} = useDispatch( 'core/edit-site' );
 
 	const isLargeViewport = useViewportMatch( 'medium' );
@@ -83,7 +83,7 @@ export default function Header( { openEntitiesSavedStates } ) {
 					<NavigationToggle
 						isOpen={ isNavigationOpen }
 						onClick={ () =>
-							setNavigationPanelOpen( ! isNavigationOpen )
+							setIsNavigationPanelOpened( ! isNavigationOpen )
 						}
 					/>
 				</MainDashboardButton.Slot>
