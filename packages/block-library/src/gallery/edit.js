@@ -36,7 +36,7 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import { sharedIcon } from './shared-icon';
-import { defaultColumnsNumber } from './shared';
+import { defaultColumnsNumber, pickRelevantMediaFiles } from './shared';
 import Gallery from './gallery';
 import {
 	LINK_DESTINATION_ATTACHMENT,
@@ -105,22 +105,21 @@ class GalleryEdit extends Component {
 
 	onSelectImages( newImages ) {
 		const { clientId, replaceInnerBlocks } = this.props;
-		const { columns, linkTo } = this.props.attributes;
+		const { columns, linkTo, sizeSlug } = this.props.attributes;
 
 		const newBlocks = newImages.map( ( image ) => {
 			return createBlock( 'core/image', {
+				...pickRelevantMediaFiles( image, sizeSlug ),
 				id: image.id,
-				caption: image.caption,
-				url: image.url,
-				link: image.link,
 				linkDestination: linkTo,
-				alt: image.alt,
 			} );
 		} );
+
 		this.setAttributes( {
 			ids: newImages.map( ( newImage ) => toString( newImage.id ) ),
 			columns: columns ? Math.min( newImages.length, columns ) : columns,
 		} );
+
 		replaceInnerBlocks( clientId, newBlocks );
 	}
 
