@@ -108,8 +108,10 @@ class GalleryEdit extends Component {
 		const { columns, linkTo, sizeSlug } = this.props.attributes;
 
 		const newBlocks = newImages.map( ( image ) => {
+			const newImageAttribs = pickRelevantMediaFiles( image, sizeSlug );
+
 			return createBlock( 'core/image', {
-				...pickRelevantMediaFiles( image, sizeSlug ),
+				...newImageAttribs,
 				id: image.id,
 				linkDestination: linkTo,
 			} );
