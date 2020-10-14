@@ -25,11 +25,12 @@ export function Gallery( {
 	onSetImageAttributes,
 	onFocusGalleryCaption,
 	insertBlocksAfter,
+	blockProps,
 } ) {
 	const { caption, images } = attributes;
 
 	return (
-		<>
+		<figure { ...blockProps }>
 			<ul className="blocks-gallery-grid">
 				{ images.map( ( img, index ) => {
 					const ariaLabel = sprintf(
@@ -83,7 +84,7 @@ export function Gallery( {
 					insertBlocksAfter( createBlock( 'core/paragraph' ) )
 				}
 			/>
-		</>
+		</figure>
 	);
 }
 

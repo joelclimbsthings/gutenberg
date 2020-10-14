@@ -394,20 +394,19 @@ function GalleryEdit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			{ noticeUI }
-			<figure { ...blockProps }>
-				<Gallery
-					{ ...props }
-					selectedImage={ selectedImage }
-					mediaPlaceholder={ mediaPlaceholder }
-					onMoveBackward={ onMoveBackward }
-					onMoveForward={ onMoveForward }
-					onRemoveImage={ onRemoveImage }
-					onSelectImage={ onSelectImage }
-					onDeselectImage={ onDeselectImage }
-					onSetImageAttributes={ setImageAttributes }
-					onFocusGalleryCaption={ onFocusGalleryCaption }
-				/>
-			</figure>
+			<Gallery
+				{ ...props }
+				blockProps={ blockProps }
+				selectedImage={ selectedImage }
+				mediaPlaceholder={ mediaPlaceholder }
+				onMoveBackward={ onMoveBackward }
+				onMoveForward={ onMoveForward }
+				onRemoveImage={ onRemoveImage }
+				onSelectImage={ onSelectImage }
+				onDeselectImage={ onDeselectImage }
+				onSetImageAttributes={ setImageAttributes }
+				onFocusGalleryCaption={ onFocusGalleryCaption }
+			/>
 		</>
 	);
 }
