@@ -184,7 +184,10 @@ export function homeTemplateId( state, action ) {
  * @param {Object} state Current state.
  * @param {Object} action Dispatched action.
  */
-function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
+export function navigationPanel(
+	state = { menu: 'root', isOpen: false },
+	action
+) {
 	switch ( action.type ) {
 		case 'SET_NAVIGATION_PANEL_ACTIVE_MENU':
 			return {
@@ -222,12 +225,12 @@ function navigationPanel( state = { menu: 'root', isOpen: false }, action ) {
  * @param {Object} state Current state.
  * @param {Object} action Dispatched action.
  */
-function blockInserterPanel( state = false, action ) {
+export function blockInserterPanel( state = false, action ) {
 	switch ( action.type ) {
 		case 'OPEN_NAVIGATION_PANEL_TO_MENU':
 			return false;
 		case 'SET_IS_NAVIGATION_PANEL_OPENED':
-			return action.isOpen ? false : state.isOpen;
+			return action.isOpen ? false : state;
 		case 'SET_IS_INSERTER_OPENED':
 			return action.isOpen;
 	}
