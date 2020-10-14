@@ -28,9 +28,6 @@ export default function TemplateDetails( { template, onClose } ) {
 			<p className="edit-site-template-details__heading">
 				{ __( 'Template details' ) }
 			</p>
-			<Button onClick={ showTemplateInSidebar } isTertiary>
-				{ __( 'View in navigation.' ) }
-			</Button>
 			{ title && (
 				<p>
 					{ sprintf(
@@ -49,6 +46,9 @@ export default function TemplateDetails( { template, onClose } ) {
 					) }
 				</p>
 			) }
+			<Button onClick={ showTemplateInSidebar } isLink>
+				{ __( 'View in navigation sidebar.' ) }
+			</Button>
 		</div>
 	);
 }
