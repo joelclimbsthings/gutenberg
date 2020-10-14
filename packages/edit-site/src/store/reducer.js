@@ -12,6 +12,7 @@ import { combineReducers } from '@wordpress/data';
  * Internal dependencies
  */
 import { PREFERENCES_DEFAULTS } from './defaults';
+import { MENU_ROOT } from '../components/left-sidebar/navigation-panel/constants';
 
 /**
  * Higher-order reducer creator which provides the given initial state for the
@@ -185,7 +186,7 @@ export function homeTemplateId( state, action ) {
  * @param {Object} action Dispatched action.
  */
 export function navigationPanel(
-	state = { menu: 'root', isOpen: false },
+	state = { menu: MENU_ROOT, isOpen: false },
 	action
 ) {
 	switch ( action.type ) {
@@ -203,13 +204,13 @@ export function navigationPanel(
 		case 'SET_IS_NAVIGATION_PANEL_OPENED':
 			return {
 				...state,
-				menu: ! action.isOpen ? 'root' : state.menu, // Set menu to root when closing panel.
+				menu: ! action.isOpen ? MENU_ROOT : state.menu, // Set menu to root when closing panel.
 				isOpen: action.isOpen,
 			};
 		case 'SET_IS_INSERTER_OPENED':
 			return {
 				...state,
-				menu: state.isOpen && action.isOpen ? 'root' : state.menu, // Set menu to root when closing panel.
+				menu: state.isOpen && action.isOpen ? MENU_ROOT : state.menu, // Set menu to root when closing panel.
 				isOpen: action.isOpen ? false : state.isOpen,
 			};
 	}
