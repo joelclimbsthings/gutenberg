@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-/**
  * WordPress dependencies
  */
 import { RichText } from '@wordpress/block-editor';
@@ -15,42 +10,26 @@ import { createBlock } from '@wordpress/blocks';
  * Internal dependencies
  */
 import GalleryImage from './gallery-image';
-import { defaultColumnsNumber } from './shared';
 
-export const Gallery = ( props ) => {
-	const {
-		attributes,
-		className,
-		isSelected,
-		setAttributes,
-		selectedImage,
-		mediaPlaceholder,
-		onMoveBackward,
-		onMoveForward,
-		onRemoveImage,
-		onSelectImage,
-		onDeselectImage,
-		onSetImageAttributes,
-		onFocusGalleryCaption,
-		insertBlocksAfter,
-	} = props;
-
-	const {
-		align,
-		columns = defaultColumnsNumber( attributes ),
-		caption,
-		imageCrop,
-		images,
-	} = attributes;
+export function Gallery( {
+	attributes,
+	isSelected,
+	setAttributes,
+	selectedImage,
+	mediaPlaceholder,
+	onMoveBackward,
+	onMoveForward,
+	onRemoveImage,
+	onSelectImage,
+	onDeselectImage,
+	onSetImageAttributes,
+	onFocusGalleryCaption,
+	insertBlocksAfter,
+} ) {
+	const { caption, images } = attributes;
 
 	return (
-		<figure
-			className={ classnames( className, {
-				[ `align${ align }` ]: align,
-				[ `columns-${ columns }` ]: columns,
-				'is-cropped': imageCrop,
-			} ) }
-		>
+		<>
 			<ul className="blocks-gallery-grid">
 				{ images.map( ( img, index ) => {
 					const ariaLabel = sprintf(
@@ -104,9 +83,9 @@ export const Gallery = ( props ) => {
 					insertBlocksAfter( createBlock( 'core/paragraph' ) )
 				}
 			/>
-		</figure>
+		</>
 	);
-};
+}
 
 function RichTextVisibilityHelper( { isHidden, ...richTextProps } ) {
 	return isHidden ? (

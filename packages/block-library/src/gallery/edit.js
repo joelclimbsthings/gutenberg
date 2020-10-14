@@ -13,6 +13,7 @@ import {
 	some,
 	toString,
 } from 'lodash';
+import classnames from 'classnames';
 
 /**
  * WordPress dependencies
@@ -25,7 +26,11 @@ import {
 	withNotices,
 	RangeControl,
 } from '@wordpress/components';
-import { MediaPlaceholder, InspectorControls } from '@wordpress/block-editor';
+import {
+	MediaPlaceholder,
+	InspectorControls,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { Platform, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { getBlobByURL, isBlobURL, revokeBlobURL } from '@wordpress/blob';
@@ -67,7 +72,6 @@ const MOBILE_CONTROL_PROPS_RANGE_CONTROL = Platform.select( {
 function GalleryEdit( props ) {
 	const {
 		attributes,
-		className,
 		isSelected,
 		noticeUI,
 		noticeOperations,
@@ -82,6 +86,7 @@ function GalleryEdit( props ) {
 		images,
 		linkTo,
 		sizeSlug,
+		align,
 	} = attributes;
 	const [ selectedImage, setSelectedImage ] = useState();
 	const [ attachmentCaptions, setAttachmentCaptions ] = useState();
@@ -317,7 +322,6 @@ function GalleryEdit( props ) {
 		<MediaPlaceholder
 			addToGallery={ hasImages }
 			isAppender={ hasImages }
-			className={ className }
 			disableMediaButtons={ hasImages && ! isSelected }
 			icon={ ! hasImages && sharedIcon }
 			labels={ {
@@ -335,8 +339,16 @@ function GalleryEdit( props ) {
 		/>
 	);
 
+	const blockProps = useBlockProps( {
+		className: classnames( {
+			[ `align${ align }` ]: align,
+			[ `columns-${ columns }` ]: columns,
+			'is-cropped': imageCrop,
+		} ),
+	} );
+
 	if ( ! hasImages ) {
-		return mediaPlaceholder;
+		return <figure { ...blockProps }>{ mediaPlaceholder }</figure>;
 	}
 
 	const imageSizeOptions = getImagesSizeOptions();
@@ -380,18 +392,20 @@ function GalleryEdit( props ) {
 				</PanelBody>
 			</InspectorControls>
 			{ noticeUI }
-			<Gallery
-				{ ...props }
-				selectedImage={ selectedImage }
-				mediaPlaceholder={ mediaPlaceholder }
-				onMoveBackward={ onMoveBackward }
-				onMoveForward={ onMoveForward }
-				onRemoveImage={ onRemoveImage }
-				onSelectImage={ onSelectImage }
-				onDeselectImage={ onDeselectImage }
-				onSetImageAttributes={ setImageAttributes }
-				onFocusGalleryCaption={ onFocusGalleryCaption }
-			/>
+			<figure { ...blockProps }>
+				<Gallery
+					{ ...props }
+					selectedImage={ selectedImage }
+					mediaPlaceholder={ mediaPlaceholder }
+					onMoveBackward={ onMoveBackward }
+					onMoveForward={ onMoveForward }
+					onRemoveImage={ onRemoveImage }
+					onSelectImage={ onSelectImage }
+					onDeselectImage={ onDeselectImage }
+					onSetImageAttributes={ setImageAttributes }
+					onFocusGalleryCaption={ onFocusGalleryCaption }
+				/>
+			</figure>
 		</>
 	);
 }

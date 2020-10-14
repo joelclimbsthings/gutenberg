@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { RichText } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -23,9 +23,11 @@ export default function save( { attributes } ) {
 
 	return (
 		<figure
-			className={ `columns-${ columns } ${
-				imageCrop ? 'is-cropped' : ''
-			}` }
+			{ ...useBlockProps.save( {
+				className: `columns-${ columns } ${
+					imageCrop ? 'is-cropped' : ''
+				}`,
+			} ) }
 		>
 			<ul className="blocks-gallery-grid">
 				{ images.map( ( image ) => {
